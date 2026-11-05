@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPTPayer Traffic Checker – check any website's traffic</title>
+<meta name="description" content="Enter any domain and open its traffic stats, rankings and speed report in one click.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#eef5f1;--ink:#10261f;--mute:#4f6a60;--line:#c5d8ce;--hot:#ff5a1f;--deep:#0e3b2e;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 "DM Sans",system-ui,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:28px 22px 64px}
+nav{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+nav span{font-family:"Bricolage Grotesque",sans-serif;font-size:20px}
+nav small{color:var(--mute);font-weight:500}
+h1{font:800 clamp(38px,8vw,76px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin:56px 0 14px;max-width:11em}
+.lead{color:var(--mute);max-width:34em;margin:0 0 34px}
+.field{display:flex;gap:10px;flex-wrap:wrap}
+.field input{flex:1 1 260px;min-width:0;font:600 clamp(20px,4.5vw,30px) "Bricolage Grotesque",sans-serif;padding:16px 18px;border:2px solid var(--deep);border-radius:12px;background:var(--white);color:var(--ink)}
+.field button{font:700 18px "DM Sans",sans-serif;padding:16px 28px;border:0;border-radius:12px;background:var(--hot);color:var(--white);cursor:pointer}
+.field button:hover{background:#e84a10}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+#msg{min-height:1.6em;margin:10px 0 0;color:#b3260e;font-weight:500}
+.list{margin-top:34px;border-top:2px solid var(--deep)}
+.row{display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.row:hover{background:var(--white)}
+.row b{font:800 21px "Bricolage Grotesque",sans-serif}
+.row p{margin:2px 0 0;color:var(--mute);font-size:15px}
+.row i{font-style:normal;font-weight:700;color:var(--hot);white-space:nowrap}
+.note{margin-top:44px;padding:20px 22px;background:var(--deep);color:#e6f3ec;border-radius:14px}
+.note h2{font:800 22px "Bricolage Grotesque",sans-serif;margin:0 0 8px}
+.note p{margin:0;max-width:44em}
+footer{margin-top:40px;color:var(--mute);font-size:14px}
+.list.off{opacity:.45;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><span>gptpayer.online</span><small>Traffic Checker</small></nav>
+
+  <h1>How much traffic does this site get?</h1>
+  <p class="lead">Type any domain. We open its visits, rankings and speed report in the tools that hold the real numbers.</p>
+
+  <form class="field" id="f" autocomplete="off">
+    <input id="d" type="text" inputmode="url" placeholder="example.com" aria-label="Domain name" value="gptpayer.online">
+    <button type="submit">Check traffic</button>
+  </form>
+  <p id="msg" role="alert"></p>
+
+  <div class="list" id="list" aria-live="polite"></div>
+
+  <div class="note">
+    <h2>Want exact numbers for your own site?</h2>
+    <p>Third-party tools only estimate. For gptpayer.online, add Google Analytics or Cloudflare Web Analytics to the page code. Both are free and show real visitors, countries and sources.</p>
+  </div>
+
+  <footer>Estimates come from third-party sites and can differ. Small or new sites often show no data.</footer>
+</div>
+
+<script>
+var tools=[
+ {n:"SimilarWeb",t:"Monthly visits, top countries, traffic sources",u:function(d){return"https://www.similarweb.com/website/"+d+"/"}},
+ {n:"Semrush",t:"Organic traffic and top keywords",u:function(d){return"https://www.semrush.com/analytics/overview/?q="+d+"&searchType=domain"}},
+ {n:"Ahrefs",t:"Estimated search traffic and backlinks",u:function(d){return"https://ahrefs.com/traffic-checker/?input="+d+"&mode=subdomains"}},
+ {n:"Cloudflare Radar",t:"Global popularity ranking of the domain",u:function(d){return"https://radar.cloudflare.com/domains/domain/"+d}},
+ {n:"PageSpeed Insights",t:"Speed and mobile score from Google",u:function(d){return"https://pagespeed.web.dev/analysis?url="+encodeURIComponent("https://"+d)}},
+ {n:"Google index check",t:"How many pages Google has listed",u:function(d){return"https://www.google.com/search?q="+encodeURIComponent("site:"+d)}}
+];
+var list=document.getElementById("list"),msg=document.getElementById("msg"),inp=document.getElementById("d");
+function clean(v){
+  v=v.trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"").split(/[\/?#]/)[0];
+  return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)?v:"";
+}
+function render(){
+  var d=clean(inp.value);
+  if(!d){list.innerHTML="";msg.textContent="Enter a valid domain, like example.com";return}
+  msg.textContent="";
+  list.innerHTML=tools.map(function(x){
+    return '<a class="row" href="'+x.u(d)+'" target="_blank" rel="noopener noreferrer"><div><b>'+x.n+'</b><p>'+x.t+'</p></div><i>Open for '+d+'</i></a>';
+  }).join("");
+}
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();render()});
+render();
+</script>
+</body>
+</html>
