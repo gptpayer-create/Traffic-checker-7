@@ -3,89 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GPTPayer Traffic Checker – check any website's traffic</title>
-<meta name="description" content="Enter any domain and open its traffic stats, rankings and speed report in one click.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+<title>GPTPayer Traffic Checker – rank, age and traffic of any website</title>
+<meta name="description" content="Check any domain: popularity rank, estimated visits, domain age, DNS and online status in one page.">
+<link rel="canonical" href="https://gptpayer.online/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0e3b2e">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GPTPayer Traffic Checker">
+<meta property="og:title" content="GPTPayer Traffic Checker – rank, age and traffic of any website">
+<meta property="og:description" content="Check any domain: popularity rank, estimated visits, domain age, DNS and online status in one page.">
+<meta property="og:url" content="https://gptpayer.online/">
+<meta property="og:image" content="https://gptpayer.online/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GPTPayer Traffic Checker – rank, age and traffic of any website">
+<meta name="twitter:description" content="Check any domain: popularity rank, estimated visits, domain age, DNS and online status in one page.">
+<meta name="twitter:image" content="https://gptpayer.online/assets/img/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GPTPayer Traffic Checker","url":"https://gptpayer.online/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the traffic checker estimate visits?","acceptedAnswer":{"@type":"Answer","text":"It takes the domain's Tranco popularity rank and converts it into a rough daily visit count with a simple formula. The numbers are estimates, not measured traffic."}},{"@type":"Question","name":"Why is my website not ranked?","acceptedAnswer":{"@type":"Answer","text":"Tranco only ranks the top 1 million domains. New or small sites usually have too little traffic to appear, so no estimate can be shown."}},{"@type":"Question","name":"Can I see exact visitors for any site?","acceptedAnswer":{"@type":"Answer","text":"No. Only the owner of a site can see exact visitors, using a tool like Google Analytics or Cloudflare Web Analytics."}},{"@type":"Question","name":"Where does the data come from?","acceptedAnswer":{"@type":"Answer","text":"Rank data comes from Tranco, WHOIS from RDAP, DNS from Google Public DNS and first-seen dates from the Internet Archive."}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#eef5f1;--ink:#10261f;--mute:#4f6a60;--line:#c5d8ce;--hot:#ff5a1f;--deep:#0e3b2e;--white:#fff}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 "DM Sans",system-ui,sans-serif}
-.wrap{max-width:920px;margin:0 auto;padding:28px 22px 64px}
-nav{display:flex;justify-content:space-between;align-items:center;font-weight:700}
-nav span{font-family:"Bricolage Grotesque",sans-serif;font-size:20px}
-nav small{color:var(--mute);font-weight:500}
-h1{font:800 clamp(38px,8vw,76px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin:56px 0 14px;max-width:11em}
-.lead{color:var(--mute);max-width:34em;margin:0 0 34px}
-.field{display:flex;gap:10px;flex-wrap:wrap}
-.field input{flex:1 1 260px;min-width:0;font:600 clamp(20px,4.5vw,30px) "Bricolage Grotesque",sans-serif;padding:16px 18px;border:2px solid var(--deep);border-radius:12px;background:var(--white);color:var(--ink)}
-.field button{font:700 18px "DM Sans",sans-serif;padding:16px 28px;border:0;border-radius:12px;background:var(--hot);color:var(--white);cursor:pointer}
-.field button:hover{background:#e84a10}
-input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
-#msg{min-height:1.6em;margin:10px 0 0;color:#b3260e;font-weight:500}
-.list{margin-top:34px;border-top:2px solid var(--deep)}
-.row{display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
-.row:hover{background:var(--white)}
-.row b{font:800 21px "Bricolage Grotesque",sans-serif}
-.row p{margin:2px 0 0;color:var(--mute);font-size:15px}
-.row i{font-style:normal;font-weight:700;color:var(--hot);white-space:nowrap}
-.note{margin-top:44px;padding:20px 22px;background:var(--deep);color:#e6f3ec;border-radius:14px}
-.note h2{font:800 22px "Bricolage Grotesque",sans-serif;margin:0 0 8px}
-.note p{margin:0;max-width:44em}
-footer{margin-top:40px;color:var(--mute);font-size:14px}
-.list.off{opacity:.45;pointer-events:none}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGYQ5YF788"></script>
+<script src="assets/js/analytics.js"></script>
 </head>
-<body>
-<div class="wrap">
-  <nav><span>gptpayer.online</span><small>Traffic Checker</small></nav>
+<body class="home">
+<div class="wrap wrap--wide">
+  <header>
+    <nav class="site-nav" aria-label="Main">
+      <a class="site-nav__logo" href="index.html" aria-label="gptpayer.online home"><img src="assets/img/logo.svg" alt="gptpayer.online" width="180" height="36"></a>
+      <div class="site-nav__links"><a href="index.html" aria-current="page">Checker</a><a href="index.html#faq">FAQ</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </nav>
+  </header>
 
-  <h1>How much traffic does this site get?</h1>
-  <p class="lead">Type any domain. We open its visits, rankings and speed report in the tools that hold the real numbers.</p>
+  <main>
+    <h1 id="top">How much traffic does this site get?</h1>
+    <p class="lead">Type any domain. Get its rank, estimated visits, age and server status on this page, then open deeper reports in one tap.</p>
 
-  <form class="field" id="f" autocomplete="off">
-    <input id="d" type="text" inputmode="url" placeholder="example.com" aria-label="Domain name" value="gptpayer.online">
-    <button type="submit">Check traffic</button>
-  </form>
-  <p id="msg" role="alert"></p>
+    <div class="field">
+      <input id="d" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="example.com" aria-label="Domain name" value="gptpayer.online">
+      <button type="button" id="go">Check traffic</button>
+    </div>
+    <p id="msg" role="alert"></p>
+    <noscript><p class="empty">This tool needs JavaScript to run. Please enable it and reload the page.</p></noscript>
 
-  <div class="list" id="list" aria-live="polite"></div>
+    <section id="res" aria-live="polite" hidden>
+      <h2 id="rt"></h2>
+      <p class="sub">Live results.</p>
+      <div class="panel"><div id="chead"></div><div id="tabs" class="tabs"></div><div id="chart"></div><div id="cstats" class="cs"></div></div>
+      <div class="list" id="ml" style="margin-top:34px"></div>
+      <h3>WHOIS</h3><div class="list" id="wl"></div>
+      <h3>DNS records</h3><div class="list" id="dl"></div>
+    </section>
 
-  <div class="note">
-    <h2>Want exact numbers for your own site?</h2>
-    <p>Third-party tools only estimate. For gptpayer.online, add Google Analytics or Cloudflare Web Analytics to the page code. Both are free and show real visitors, countries and sources.</p>
-  </div>
+    <section id="exact" class="note">
+      <h2>Want exact numbers for your own site?</h2>
+      <p>Every tool outside your site only estimates. For real visitors, countries and sources of gptpayer.online, add Google Analytics or Cloudflare Web Analytics to this page. Both are free.</p>
+    </section>
 
-  <footer>Estimates come from third-party sites and can differ. Small or new sites often show no data.</footer>
+    <section id="faq">
+      <h2>Questions people ask</h2>
+    <h3>How does the traffic checker estimate visits?</h3>
+    <p>It takes the domain's Tranco popularity rank and converts it into a rough daily visit count with a simple formula. The numbers are estimates, not measured traffic.</p>
+    <h3>Why is my website not ranked?</h3>
+    <p>Tranco only ranks the top 1 million domains. New or small sites usually have too little traffic to appear, so no estimate can be shown.</p>
+    <h3>Can I see exact visitors for any site?</h3>
+    <p>No. Only the owner of a site can see exact visitors, using a tool like Google Analytics or Cloudflare Web Analytics.</p>
+    <h3>Where does the data come from?</h3>
+    <p>Rank data comes from Tranco, WHOIS from RDAP, DNS from Google Public DNS and first-seen dates from the Internet Archive. <a href="about.html">Read more</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Rank data: Tranco. WHOIS: RDAP. DNS: Google Public DNS. First seen: Internet Archive. Estimated visits are a rough guess from the rank, not measured traffic. Ad revenue assumes $2 to $10 per 1,000 visits.</p>
+    <p class="site-footer__links"><a href="index.html">Checker</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></p>
+  </footer>
 </div>
 
-<script>
-var tools=[
- {n:"SimilarWeb",t:"Monthly visits, top countries, traffic sources",u:function(d){return"https://www.similarweb.com/website/"+d+"/"}},
- {n:"Semrush",t:"Organic traffic and top keywords",u:function(d){return"https://www.semrush.com/analytics/overview/?q="+d+"&searchType=domain"}},
- {n:"Ahrefs",t:"Estimated search traffic and backlinks",u:function(d){return"https://ahrefs.com/traffic-checker/?input="+d+"&mode=subdomains"}},
- {n:"Cloudflare Radar",t:"Global popularity ranking of the domain",u:function(d){return"https://radar.cloudflare.com/domains/domain/"+d}},
- {n:"PageSpeed Insights",t:"Speed and mobile score from Google",u:function(d){return"https://pagespeed.web.dev/analysis?url="+encodeURIComponent("https://"+d)}},
- {n:"Google index check",t:"How many pages Google has listed",u:function(d){return"https://www.google.com/search?q="+encodeURIComponent("site:"+d)}}
-];
-var list=document.getElementById("list"),msg=document.getElementById("msg"),inp=document.getElementById("d");
-function clean(v){
-  v=v.trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"").split(/[\/?#]/)[0];
-  return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)?v:"";
-}
-function render(){
-  var d=clean(inp.value);
-  if(!d){list.innerHTML="";msg.textContent="Enter a valid domain, like example.com";return}
-  msg.textContent="";
-  list.innerHTML=tools.map(function(x){
-    return '<a class="row" href="'+x.u(d)+'" target="_blank" rel="noopener noreferrer"><div><b>'+x.n+'</b><p>'+x.t+'</p></div><i>Open for '+d+'</i></a>';
-  }).join("");
-}
-document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();render()});
-render();
-</script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
