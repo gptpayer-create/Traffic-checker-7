@@ -79,7 +79,6 @@ var metrics = [
       return {
         v: "#" + last.toLocaleString("en-US"),
         c: last < 100000 ? "good" : "mid",
-        n: "Among the world's most visited sites (1 is the busiest)." + (r.length > 1 ? " Last " + r.length + " days:" : ""),
         html: r.length > 1 ? spark(r.map(function (x) { return x.rank; })) : ""
       };
     });
@@ -91,7 +90,7 @@ var metrics = [
       return { v: "Online", c: "good", n: "Answered in about " + (Date.now() - s) + " ms from your connection." };
     }, function () {
       clearTimeout(t);
-      return { v: "No reply", c: "mid", n: "Your browser got no reply over HTTPS within 9 seconds. The site may block browser checks, so this does not always mean it is down." };
+      return { v: "No reply", c: "mid" };
     });
   } },
   { l: "First seen on the web", run: function (d) {
