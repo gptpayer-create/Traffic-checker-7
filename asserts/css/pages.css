@@ -1,4 +1,0 @@
-/* ==========================================================
-   pages.css – About, Contact, Privacy
-   ========================================================== */
-.mail{display:inline-block;font:800 clamp(20px,5vw,28px) "Bricolage Grotesque",sans-serif;padding:14px 20px;border:2px solid var(--deep);border-radius:12px;background:var(--white);text-decoration:none;word-break:break-all}
